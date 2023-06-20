@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <HorizontalScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/videoLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- Hier werden dynamisch erstellte Videoviews hinzugefügt -->
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>
