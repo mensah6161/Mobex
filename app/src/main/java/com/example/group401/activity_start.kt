@@ -20,24 +20,19 @@ import android.net.Uri
 import com.example.group401.R
 
 
-
-
 class activity_start : AppCompatActivity() {
-
     private lateinit var popupWindow: PopupWindow
     private lateinit var menuButton: Button
     private lateinit var searchField: EditText
     private lateinit var searchButton: Button
-
     private var isSearchVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+          setContentView(R.layout.activity_start)
 
         val layoutInflater = LayoutInflater.from(this)
         val parentLayout = findViewById<LinearLayout>(R.id.parentLayout)
-
         val categories = listOf(
             Category("Familie", listOf(
                 VideoItem("Video First", R.drawable.thumbfam1, "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_1MB.mp4"),
@@ -53,7 +48,7 @@ class activity_start : AppCompatActivity() {
                 VideoItem("Video B", R.drawable.thumbwork4, "DEEP_LINK_D"),
                 VideoItem("Video C", R.drawable.thumbwork5, "DEEP_LINK_E"),
 
-            )),
+                )),
             Category("Beauty", listOf(
                 VideoItem("Video A", R.drawable.thumbwork4, "DEEP_LINK_A"),
                 VideoItem("Video B", R.drawable.thumbwork5, "DEEP_LINK_B"),
@@ -62,12 +57,9 @@ class activity_start : AppCompatActivity() {
                 VideoItem("Video C", R.drawable.thumbwork3, "DEEP_LINK_E")
             )),
         )
-
-
         for (category in categories) {
             category.createView(layoutInflater, parentLayout)
         }
-
         menuButton = findViewById<Button>(R.id.menuButton)
         menuButton.setOnClickListener {
             if (popupWindow.isShowing) {
@@ -76,89 +68,79 @@ class activity_start : AppCompatActivity() {
                 showPopupMenu()
             }
         }
-
-        // Initialisiere das Popup-Fenster
+        // Popup Fenster
         popupWindow = PopupWindow(this)
-
-        // Initialisiere das Suchfeld und den "S"-Button
+        // Suchfeld, erscheint nur wenn man auf den S-Button klickt
         searchField = findViewById<EditText>(R.id.searchField)
-        searchField.visibility = View.GONE // Ausblenden des Suchfelds zu Beginn
+        searchField.visibility = View.GONE
         searchButton = findViewById<Button>(R.id.searchButton)
         searchButton.setOnClickListener {
-            toggleSearchVisibility()
+            toggleSearchVisibility() //kehrt es einfach um
             val searchText = searchField.text.toString()
             if (searchText.isNotEmpty()) {
-
-                showToast("Start search")
+                showToast("Start search") //zum Sehen, obs zur richtigen Zeit einsetzt
             }
         }
-
     }
-
-
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        // Überprüfe, ob der Benutzer außerhalb des Popup-Fensters geklickt hat und schließe es
+        //Sobakd Nutzer außerhalb des PopupFensters klickt -> dismiss Fenster
         if (event.action == MotionEvent.ACTION_DOWN && popupWindow.isShowing) {
             val contentView = popupWindow.contentView
             val rect =  Rect()
             contentView.getGlobalVisibleRect(rect)
+            //aras
             if (!rect.contains(event.rawX.toInt(), event.rawY.toInt())) {
-                popupWindow.dismiss() // Schließe das Popup-Fenster
+                popupWindow.dismiss()
                 return true
             }
         }
         return super.dispatchTouchEvent(event)
     }
     private fun showPopupMenu() {
-        // Erzeuge Popup-Fenster für das Menü
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val menuView = inflater.inflate(R.layout.menu_layout, null)
 
-        // Initialisiere das Popup-Fenster
+        // Initialisieren des Popup-Fensters
         popupWindow = PopupWindow(menuView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
-        // Konfiguriere die Buttons im Menü
+        // Buttons im Menü
         val profileButton = menuView.findViewById<Button>(R.id.profileButton)
         val settingsButton = menuView.findViewById<Button>(R.id.settingsButton)
         val logoutButton = menuView.findViewById<Button>(R.id.logoutButton)
-
-        // Setze die Klicklistener für die Buttons
+        // Click für Profile Button
         profileButton.setOnClickListener {
-            // Aktion für den "Profile" Button
-            popupWindow.dismiss()  // Schließe das Popup-Fenster
-            // Hier kannst du den Code für die Profilaktion hinzufügen
+            popupWindow.dismiss()
+            //evtl. Öffnen neuer Activity
         }
-
+        //Click für Settings Button
         settingsButton.setOnClickListener {
-            // Aktion für den "Settings" Button
-            popupWindow.dismiss()  // Schließe das Popup-Fenster
-            // Hier kannst du den Code für die Einstellungsaktion hinzufügen
+            popupWindow.dismiss()
         }
-
+        //Click für Logout
         logoutButton.setOnClickListener {
-            // Aktion für den "Logout" Button
-            popupWindow.dismiss()  // Schließe das Popup-Fenster
-            // Hier kannst du den Code für die Logout-Aktion hinzufügen
+            popupWindow.dismiss()
+            //mensah: new Activity -"Youre logged out"
         }
-
-        // Zeige das Popup-Fenster an der oberen rechten Ecke des Menü-Buttons an
+        //aras
+        // Popup soll rechts oben vom Menü Button sich öffnen
         val location = IntArray(2)
         menuButton.getLocationOnScreen(location)
         val x = location[0] + menuButton.width
         val y = location[1] - menuButton.height
         popupWindow.showAtLocation(menuButton, Gravity.NO_GRAVITY, x, y)
     }
-
+    //aras
     private fun toggleSearchVisibility() {
         isSearchVisible = !isSearchVisible
         searchField.visibility = if (isSearchVisible) View.VISIBLE else View.GONE
     }
-
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
 
+
+//aras
 class Category(val name: String, val videoList: List<VideoItem>) {
     fun createView(inflater: LayoutInflater, parentLayout: LinearLayout) {
         val categoryView = inflater.inflate(R.layout.category_layout, null)
@@ -168,7 +150,7 @@ class Category(val name: String, val videoList: List<VideoItem>) {
 
         categoryNameTextView.text = name
 
-        // Erstelle dynamisch Video-Views
+        // dynamische Video Views: aras
         for (video in videoList) {
             val videoView = inflater.inflate(R.layout.item_video, null)
             val thumbnailImageView = videoView.findViewById<ImageView>(R.id.thumbnailImageView)
@@ -180,23 +162,19 @@ class Category(val name: String, val videoList: List<VideoItem>) {
             videoView.setOnClickListener {
                 val intent = Intent(videoView.context, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, video.title)
-                   // putExtra(VideoPlayerActivity.EXTRA_VIDEO_THUMBNAIL, video.thumbnail)
+                    // putExtra(VideoPlayerActivity.EXTRA_VIDEO_THUMBNAIL, video.thumbnail)
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, video.deepLink)
                 }
                 videoView.context.startActivity(intent)
             }
-
-
-
             videoLayout.addView(videoView)
         }
 
-        // Scrollen nach rechts bei Berührung des Bildschirmendes
+        // Berühren rechten Bildschirmrand -> scroll rechts
         scrollView.post {
             scrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
         }
-
         parentLayout.addView(categoryView)    }
 }
-
+//aras
 data class VideoItem(val title: String, val thumbnail: Int, val deepLink: String)

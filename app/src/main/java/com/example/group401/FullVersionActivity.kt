@@ -12,38 +12,33 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.group401.R
 
 class FullVersionActivity : AppCompatActivity() {
-
     companion object {
         const val EXTRA_VIDEO_DEEP_LINK = "extra_video_deep_link"
     }
-
+    //au0erhalb constructor - lateinit :aras
     private lateinit var videoView: VideoView
     private lateinit var playPauseButton: ImageButton
     private lateinit var replayButton: ImageButton
     private lateinit var closeButton: ImageButton
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_version)
-
-        // Hide the status bar
         hideStatusBar()
-
-        // Set the background color to black
+        //aras
         setWindowBackgroundBlack()
-
+        //im VideoView soll die Video Größe bestimmt werden
         videoView = findViewById(R.id.fullVideoView)
         playPauseButton = findViewById(R.id.playPauseButton)
         replayButton = findViewById(R.id.replayButton)
         closeButton = findViewById(R.id.closeButton)
-
+        //aras
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
-        // Set video URI for the VideoView
+        // Set video URI for the VideoView aras
         val videoUri = Uri.parse(videoDeepLink)
         videoView.setVideoURI(videoUri)
 
-        // Set click listener for play/pause button
+        //Click für play/pause button -abwechselnd -Kontrolle von Video Status
         playPauseButton.setOnClickListener {
             if (videoView.isPlaying) {
                 pauseVideo()
@@ -52,28 +47,26 @@ class FullVersionActivity : AppCompatActivity() {
             }
         }
 
-        // Set click listener for replay button
+        // Click für replay button
         replayButton.setOnClickListener {
             replayVideo()
         }
 
-        // Set click listener for close button
+        // Click für  close button
         closeButton.setOnClickListener {
             finish()
         }
 
-        // Set completion listener for video playback
+        // Click für replay :aras
         videoView.setOnCompletionListener {
             showReplayButton()
         }
 
-        // Start playing the video
         playVideo()
     }
-
+//Video beenden, wenn activity zu EnDE
     override fun onDestroy() {
         super.onDestroy()
-        // Stop and release the VideoView resources when the activity is destroyed
         videoView.stopPlayback()
     }
 
@@ -100,7 +93,7 @@ class FullVersionActivity : AppCompatActivity() {
     private fun hideReplayButton() {
         replayButton.visibility = View.GONE
     }
-
+//SOURCE ARAS
     private fun hideStatusBar() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             window.insetsController?.let { controller ->
