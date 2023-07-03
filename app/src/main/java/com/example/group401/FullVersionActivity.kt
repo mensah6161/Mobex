@@ -24,14 +24,13 @@ class FullVersionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_full_version)
         hideStatusBar()
-        //aras
         setWindowBackgroundBlack()
-        //im VideoView soll die Video Größe bestimmt werden
+
         videoView = findViewById(R.id.fullVideoView)
         playPauseButton = findViewById(R.id.playPauseButton)
         replayButton = findViewById(R.id.replayButton)
         closeButton = findViewById(R.id.closeButton)
-        //aras
+
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
         // Set video URI for the VideoView aras
@@ -46,25 +45,21 @@ class FullVersionActivity : AppCompatActivity() {
                 playVideo()
             }
         }
-
         // Click für replay button
         replayButton.setOnClickListener {
             replayVideo()
         }
-
-        // Click für  close button
+        // x button zum schließen
         closeButton.setOnClickListener {
             finish()
         }
-
-        // Click für replay :aras
+        // replaay
         videoView.setOnCompletionListener {
             showReplayButton()
         }
-
         playVideo()
     }
-//Video beenden, wenn activity zu EnDE
+    //Video beenden, wenn activity zu EnDE
     override fun onDestroy() {
         super.onDestroy()
         videoView.stopPlayback()
@@ -93,7 +88,7 @@ class FullVersionActivity : AppCompatActivity() {
     private fun hideReplayButton() {
         replayButton.visibility = View.GONE
     }
-//SOURCE ARAS
+    //SOURCE ARAS
     private fun hideStatusBar() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
             window.insetsController?.let { controller ->

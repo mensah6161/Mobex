@@ -20,7 +20,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 
     private lateinit var videoView: VideoView
     private lateinit var videoTitleTextView: TextView
-    private lateinit var videoThumbnailImageView: ImageView
+    // private lateinit var videoThumbnailImageView: ImageView optional für später
     private lateinit var fullScreenButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         videoView = findViewById(R.id.videoView)
 
         val videoTitle = intent.getStringExtra(EXTRA_VIDEO_TITLE)
-        val videoThumbnail = intent.getIntExtra(EXTRA_VIDEO_THUMBNAIL, R.drawable.thumbfam1)
+        //val videoThumbnail = intent.getIntExtra(EXTRA_VIDEO_THUMBNAIL, R.drawable.thumbfam1)
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
         videoTitleTextView.text = videoTitle
@@ -43,10 +43,10 @@ class VideoPlayerActivity : AppCompatActivity() {
         val videoUri = Uri.parse(videoDeepLink)
         videoView.setVideoURI(videoUri)
 
-        // Start playing the video
+        // Starting video
         videoView.start()
 
-        // Set click listener for full screen button
+        // Full screen Option
         fullScreenButton.setOnClickListener {
             val intent = Intent(this, FullVersionActivity::class.java)
             intent.putExtra(FullVersionActivity.EXTRA_VIDEO_DEEP_LINK, videoDeepLink)
@@ -56,7 +56,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Stop and release the VideoView resources when the activity is destroyed
+        // Stop vid and close everything depending on it/recources
         videoView.stopPlayback()
     }
 }
