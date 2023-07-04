@@ -1,5 +1,14 @@
 package com.example.group401
 
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
+import androidx.core.graphics.drawable.toDrawable
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 class VideoListGenerator {
     companion object {
         fun getCategories(): List<Category> {
@@ -48,6 +57,28 @@ class VideoListGenerator {
             categories.add(Category("Family", familyVideos))
 
             return categories
+        }
+        fun loadImageFromUrl(context: Context, url: String, callback: (Drawable?) -> Unit) {
+            Picasso.get()
+                .load(url)
+                .into(object : Target {
+                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                        // Convert the Bitmap to a drawable
+                        val drawable = bitmap?.let { BitmapDrawable(context.resources, it) }
+
+                        // Callback with the drawable
+                        callback(drawable)
+                    }
+
+                    override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                        // Handle the failure case
+                        callback(null)
+                    }
+
+                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                        // Optional: Handle any preparation logic
+                    }
+                })
         }
     }
 }
