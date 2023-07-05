@@ -53,13 +53,13 @@ class FullVersionActivity : AppCompatActivity() {
         closeButton.setOnClickListener {
             finish()
         }
-        // replaay
+        // replay
         videoView.setOnCompletionListener {
             showReplayButton()
         }
         playVideo()
     }
-    //Video beenden, wenn activity zu EnDE
+    //Video beenden, wenn activity zu Ende
     override fun onDestroy() {
         super.onDestroy()
         videoView.stopPlayback()

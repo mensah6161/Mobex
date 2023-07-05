@@ -16,8 +16,14 @@ import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import com.example.group401.R
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
+import java.lang.Exception
+import java.lang.ref.WeakReference
 
 
 class activity_start : AppCompatActivity() {
@@ -132,7 +138,25 @@ class Category(val name: String, val videoList: List<VideoItem>) {
             val thumbnailImageView = videoView.findViewById<ImageView>(R.id.thumbnailImageView)
             val titleTextView = videoView.findViewById<TextView>(R.id.titleTextView)
 
-            thumbnailImageView.setImageResource(video.thumbnail)
+            val target = object : Target {
+                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                    bitmap?.let {
+                        thumbnailImageView.setImageBitmap(bitmap)
+                    }
+                }
+
+                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                    // Handle image loading failure if needed
+                }
+
+                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
+                    // Handle placeholder image if needed
+                }
+            }
+
+            // Load image using Picasso
+            Picasso.get().load(video.thumbnailUrl).into(target)
+
             titleTextView.text = video.title
 
             videoView.setOnClickListener {
@@ -145,11 +169,14 @@ class Category(val name: String, val videoList: List<VideoItem>) {
             videoLayout.addView(videoView)
         }
 
-        // Berühren rechten Bildschirmrand -> scroll rechts
+        // Scroll to the right when touching the right edge of the screen
         scrollView.post {
             scrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
         }
-        parentLayout.addView(categoryView)    }
+        parentLayout.addView(categoryView)
+    }
 }
+
 //aras
-data class VideoItem(val title: String, val thumbnail: Int, val deepLink: String)
+data class VideoItem(val title: String, val thumbnailUrl: String, val deepLink: String) {
+}

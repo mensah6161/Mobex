@@ -3,52 +3,53 @@ package com.example.group401
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toDrawable
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
+import java.net.URL
 class VideoListGenerator {
     companion object {
         fun getCategories(): List<Category> {
             // Generate and return the list of categories dynamically here
             val categories = mutableListOf<Category>()
-
+            val imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Morelasci.jpg/300px-Morelasci.jpg"
             // Add categories and their video items
             val sealifeVideos = listOf(
-                VideoItem("Video First", R.drawable.thumbfam1, "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_1MB.mp4"),
-                VideoItem("Video 2", R.drawable.thumbfam2, "DEEP_LINK_2"),
-                VideoItem("Video 3", R.drawable.thumbfam3, "DEEP_LINK_3"),
-                VideoItem("Video 2", R.drawable.thumbfam4, "DEEP_LINK_4"),
-                VideoItem("Video 3", R.drawable.thumbfam5, "DEEP_LINK_5"),
-                VideoItem("Video 2", R.drawable.thumbfam6, "DEEP_LINK_6"),
-                VideoItem("Video 3", R.drawable.thumbfam7, "DEEP_LINK_7"),
-                VideoItem("Video 2", R.drawable.thumbfam8, "DEEP_LINK_8"),
-                VideoItem("Video 3", R.drawable.thumbfam9, "DEEP_LINK_9")
+                VideoItem("Video First", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_1MB.mp4"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_2"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_3"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_4"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_5"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_6"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_7"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_8"),
+                VideoItem("Video 3","https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_9")
             )
             val workVideos = listOf(
-                VideoItem("Video A", R.drawable.thumbwork1, "DEEP_LINK_A"),
-                VideoItem("Video B", R.drawable.thumbwork2, "DEEP_LINK_B"),
-                VideoItem("Video C", R.drawable.thumbwork3, "DEEP_LINK_C"),
-                VideoItem("Video D", R.drawable.thumbwork4, "DEEP_LINK_D"),
-                VideoItem("Video E", R.drawable.thumbwork5, "DEEP_LINK_E"),
-                VideoItem("Video F", R.drawable.thumbwork1, "DEEP_LINK_D"),
-                VideoItem("Video G", R.drawable.thumbwork3, "DEEP_LINK_D"),
-                VideoItem("Video H", R.drawable.thumbwork2, "DEEP_LINK_F"),
-                VideoItem("Video I", R.drawable.thumbwork4, "DEEP_LINK_G")
+                VideoItem("Video First", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_1MB.mp4"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_2"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_3"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_4"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_5"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_6"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_7"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_8"),
+                VideoItem("Video 3","https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_9")
             )
             val familyVideos = listOf(
-                VideoItem("Video A", R.drawable.thumbfam11, "DEEP_LINK_A"),
-                VideoItem("Video B", R.drawable.thumbfam12, "DEEP_LINK_B"),
-                VideoItem("Video C", R.drawable.thumbfam13, "DEEP_LINK_C"),
-                VideoItem("Video D", R.drawable.thumbfam14, "DEEP_LINK_D"),
-                VideoItem("Video E", R.drawable.thumbfam15, "DEEP_LINK_E"),
-                VideoItem("Video F", R.drawable.thumbfam11, "DEEP_LINK_F"),
-                VideoItem("Video G", R.drawable.thumbfam12, "DEEP_LINK_G"),
-                VideoItem("Video H", R.drawable.thumbfam13, "DEEP_LINK_H"),
-                VideoItem("Video I", R.drawable.thumbfam14, "DEEP_LINK_I"),
-                VideoItem("Video J", R.drawable.thumbfam15, "DEEP_LINK_J")
+                VideoItem("Video First", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "https://test-videos.co.uk/vids/jellyfish/mp4/h264/1080/Jellyfish_1080_10s_1MB.mp4"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_2"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_3"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_4"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_5"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_6"),
+                VideoItem("Video 3", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_7"),
+                VideoItem("Video 2", "https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_8"),
+                VideoItem("Video 3","https://api.ardmediathek.de/image-service/images/urn:ard:image:38abcf713cbc2935?w=200&ch=18fa4e9974aa0d6c&imwidth=200", "DEEP_LINK_9")
             )
 
             // Add categories to the list
@@ -58,27 +59,6 @@ class VideoListGenerator {
 
             return categories
         }
-        fun loadImageFromUrl(context: Context, url: String, callback: (Drawable?) -> Unit) {
-            Picasso.get()
-                .load(url)
-                .into(object : Target {
-                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                        // Convert the Bitmap to a drawable
-                        val drawable = bitmap?.let { BitmapDrawable(context.resources, it) }
 
-                        // Callback with the drawable
-                        callback(drawable)
-                    }
-
-                    override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                        // Handle the failure case
-                        callback(null)
-                    }
-
-                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                        // Optional: Handle any preparation logic
-                    }
-                })
-        }
     }
 }
