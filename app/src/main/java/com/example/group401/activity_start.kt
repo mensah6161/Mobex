@@ -21,6 +21,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import com.example.group401.R
 import com.squareup.picasso.Picasso
+
 import com.squareup.picasso.Target
 import java.lang.Exception
 import java.lang.ref.WeakReference
