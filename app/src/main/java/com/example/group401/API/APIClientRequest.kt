@@ -5,9 +5,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 
@@ -29,8 +26,6 @@ class APIClientRequest {
 
     private val videoService: VideoDataService = retrofit.create(VideoDataService::class.java)
 
-    fun getRandomVideos(count: Int): List<VideoData> {
-        val response = videoService.getRandomVideos(count).execute()
-        return response.body() ?: emptyList()
-    }
+
+
 }
