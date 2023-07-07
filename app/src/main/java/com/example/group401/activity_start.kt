@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import android.net.Uri
 import com.example.group401.R
 
@@ -122,7 +124,7 @@ class activity_start : AppCompatActivity() {
 }
 
 //aras
-class Category(val name: String, val videoList: List<VideoItem>) {
+class Category(val name: String, val videoList: List<VideoItemKotlin>) {
     fun createView(inflater: LayoutInflater, parentLayout: LinearLayout) {
         val categoryView = inflater.inflate(R.layout.category_layout, null)
         val categoryNameTextView = categoryView.findViewById<TextView>(R.id.categoryName)
