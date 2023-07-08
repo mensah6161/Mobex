@@ -6,8 +6,6 @@ import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
-
-
 @JsonClass(generateAdapter = true)
 data class VideoData(
     @Json(name = "title") val title: String?,
@@ -25,7 +23,4 @@ class APIClientRequest {
         .build()
 
     private val videoService: VideoDataService = retrofit.create(VideoDataService::class.java)
-
-
-
 }

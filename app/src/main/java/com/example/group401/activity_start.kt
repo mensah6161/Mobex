@@ -1,30 +1,30 @@
 package com.example.group401
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
-import android.os.Bundle
 import android.widget.EditText
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Target
-import android.net.Uri
-import com.example.group401.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-import java.lang.Exception
-import java.lang.ref.WeakReference
 
 
 class activity_start : AppCompatActivity() {
@@ -34,16 +34,22 @@ class activity_start : AppCompatActivity() {
     private lateinit var searchButton: Button
     private var isSearchVisible = false
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
         val layoutInflater = LayoutInflater.from(this)
         val parentLayout = findViewById<LinearLayout>(R.id.parentLayout)
-        val categories = VideoListGenerator.getCategories()
+        GlobalScope.launch(Dispatchers.Main) {
+            val categories = withContext(Dispatchers.IO) {
+                VideoListGenerator.getCategories()
+            }
 
-        for (category in categories) {
-            category.createView(layoutInflater, parentLayout)
+            for (category in categories) {
+                category.createView(layoutInflater, parentLayout)
+            }
         }
         menuButton = findViewById<Button>(R.id.menuButton)
         menuButton.setOnClickListener {
