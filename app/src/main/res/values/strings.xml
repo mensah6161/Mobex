@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Group4.01</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="video_title">Video Title</string>
+    <string name="vollansicht">Vollansicht</string>
+    <string name="search">Search</string>
+    <string name="s">S</string>
+    <string name="categories">Categories</string>
+    <string name="movies">Movies</string>
+    <string name="serials">Serials</string>
 </resources>

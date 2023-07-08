@@ -19,7 +19,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:inputType="text" />
 
             <Button
@@ -27,7 +27,7 @@
                 android:layout_width="42dp"
                 android:layout_height="50dp"
                 android:layout_margin="8dp"
-                android:text="S"
+                android:text="@string/s"
                 android:textSize="18sp" />
 
             <Button
@@ -59,7 +59,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Serials"
+                    android:text="@string/serials"
                     android:textColor="#0027FF" />
 
                 <Button
@@ -67,7 +67,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Movies"
+                    android:text="@string/movies"
                     android:textColor="#0027FF" />
 
                 <Button
@@ -75,7 +75,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Categories"
+                    android:text="@string/categories"
                     android:textColor="#0027FF" />
 
             </LinearLayout>
