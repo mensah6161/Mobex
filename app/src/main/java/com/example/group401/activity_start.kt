@@ -1,7 +1,6 @@
 package com.example.group401
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -18,13 +17,14 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 
 class activity_start : AppCompatActivity() {
@@ -35,13 +35,14 @@ class activity_start : AppCompatActivity() {
     private var isSearchVisible = false
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
         val layoutInflater = LayoutInflater.from(this)
         val parentLayout = findViewById<LinearLayout>(R.id.parentLayout)
+
+        //Code Teil damit es nicht Syncron zur Main geschieht
         GlobalScope.launch(Dispatchers.Main) {
             val categories = withContext(Dispatchers.IO) {
                 VideoListGenerator.getCategories()
@@ -145,24 +146,25 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
             val thumbnailImageView = videoView.findViewById<ImageView>(R.id.thumbnailImageView)
             val titleTextView = videoView.findViewById<TextView>(R.id.titleTextView)
 
-            val target = object : Target {
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    bitmap?.let {
-                        thumbnailImageView.setImageBitmap(bitmap)
-                    }
+            val target = object : CustomTarget<Drawable>() {
+                override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                    thumbnailImageView.setImageDrawable(resource)
+                    println("Successful thumbnail at: ${video.title} Link thumbnail: ${video.thumbnailUrl}")
                 }
 
-                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                    // Handle image loading failure if needed
+                override fun onLoadFailed(errorDrawable: Drawable?) {
+                    println("Failed to load thumbnail: ${video.title} Link to missing thumbnail: ${video.thumbnailUrl}")
                 }
 
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                    // Handle placeholder image if needed
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    println("Image load cleared")
                 }
             }
 
-            // Load image using Picasso
-            Picasso.get().load(video.thumbnailUrl).into(target)
+            Glide.with(videoView)
+                .load(video.thumbnailUrl)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(target)
 
             titleTextView.text = video.title
 

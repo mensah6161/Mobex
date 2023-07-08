@@ -16,35 +16,35 @@ class VideoListGenerator {
 
             // Add categories and their video items
             val videoApi = VideoAPI()
-            val videoItemListbyCategory1 = videoApi.fetchRandomVideoDataOfCategory(3, Category1)
+            val videoItemListbyCategory1 = videoApi.fetchRandomVideoDataOfCategory(5, Category1)
             if (videoItemListbyCategory1 != null) {
                 val videoItemsOfCategory1 = videoItemListbyCategory1.map { videoItem ->
                     VideoItemKotlin(videoItem.title, videoItem.thumb_nail, videoItem.video_url)
                 }
                 categories.add(Category(Category1, videoItemsOfCategory1))
             }
-            val videoItemListbyCategory2 = videoApi.fetchRandomVideoDataOfCategory(3, Category2)
+            val videoItemListbyCategory2 = videoApi.fetchRandomVideoDataOfCategory(5, Category2)
             if (videoItemListbyCategory2 != null) {
                 val videoItemsOfCategory2 = videoItemListbyCategory2.map { videoItem ->
                     VideoItemKotlin(videoItem.title, videoItem.thumb_nail, videoItem.video_url)
                 }
                 categories.add(Category(Category2, videoItemsOfCategory2))
             }
-            val videoItemListbyCategory3 = videoApi.fetchRandomVideoDataOfCategory(4, Category3)
+            val videoItemListbyCategory3 = videoApi.fetchRandomVideoDataOfCategory(5, Category3)
             if (videoItemListbyCategory3 != null) {
                 val videoItemsOfCategory3 = videoItemListbyCategory3.map { videoItem ->
                     VideoItemKotlin(videoItem.title, videoItem.thumb_nail, videoItem.video_url)
                 }
                 categories.add(Category(Category3, videoItemsOfCategory3))
             }
-            val videoItemListbyCategory4 = videoApi.fetchRandomVideoDataOfCategory(4, Category4)
+            val videoItemListbyCategory4 = videoApi.fetchRandomVideoDataOfCategory(5, Category4)
             if (videoItemListbyCategory4 != null) {
                 val videoItemsOfCategory4 = videoItemListbyCategory4.map { videoItem ->
                     VideoItemKotlin(videoItem.title, videoItem.thumb_nail, videoItem.video_url)
                 }
                 categories.add(Category(Category4, videoItemsOfCategory4))
             }
-            val videoItemListbyCategory5 = videoApi.fetchRandomVideoDataOfCategory(4, Category5)
+            val videoItemListbyCategory5 = videoApi.fetchRandomVideoDataOfCategory(5, Category5)
             if (videoItemListbyCategory5 != null) {
                 val videoItemsOfCategory5 = videoItemListbyCategory5.map { videoItem ->
                     VideoItemKotlin(videoItem.title, videoItem.thumb_nail, videoItem.video_url)
