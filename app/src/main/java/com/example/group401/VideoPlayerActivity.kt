@@ -25,7 +25,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         const val INSTITUTION="extra_institution"
         const val INSTITUTION_LOGO="extra_institution_logo"
         const val PUBLISHER="extra_publisher"
-        const val  DURATION=45
+        const val DURATION=45
         const val CATEGORY="extra_category"
         const val SUBCATEGORY="extra_subcategory"
         const val AV_FROM="extra_date_from"
@@ -46,7 +46,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.video_player)
         var Text:String
-
+        println("Link of Logo Image : $INSTITUTION_LOGO")
 
         Text= "# "+ intent.getStringExtra(CATEGORY) +"#"+ intent.getStringExtra(SUBCATEGORY) +", Duratio:"
         videoTitleTextView = findViewById(R.id.Title)
@@ -58,22 +58,27 @@ class VideoPlayerActivity : AppCompatActivity() {
         videoView = findViewById(R.id.videoView2)
 
         val videoTitle = intent.getStringExtra(EXTRA_VIDEO_TITLE)
-        //val videoThumbnail = intent.getIntExtra(EXTRA_VIDEO_THUMBNAIL, R.drawable.thumbfam1)
+        val videoLogoUrl = intent.getStringExtra(INSTITUTION_LOGO)
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
         val target = object : CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
                 Institution_Logo.setImageDrawable(resource)
+                println("Successfully loaded the Image into the logo location")
+                println("")
             }
             override fun onLoadFailed(errorDrawable: Drawable?) {
+                println("Failed to load the Image into the logo location And this is the Link$INSTITUTION_LOGO")
             }
             override fun onLoadCleared(placeholder: Drawable?) {
+                println("Successfully started loading the Image for the logo")
             }
         }
         Glide.with(videoView)
-            .load(INSTITUTION_LOGO)
+            .load(videoLogoUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
             .centerCrop()
+            .
             .into(target)
 
 

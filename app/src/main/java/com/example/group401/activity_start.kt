@@ -176,10 +176,9 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
                     putExtra(VideoPlayerActivity.VIDEO_SIZE, video.video_size)
                     putExtra(VideoPlayerActivity.CREATED, video.created)
                     putExtra(VideoPlayerActivity.INSTITUTION, video.institution)
-                    putExtra(VideoPlayerActivity.INSTITUTION_LOGO, video.institution_logo)
+                    putExtra(VideoPlayerActivity.INSTITUTION_LOGO, video.institution_logo.toString())
                     putExtra(VideoPlayerActivity.PUBLISHER, video.publisher)
                     putExtra(VideoPlayerActivity.CATEGORY, video.category)
-
                     putExtra(VideoPlayerActivity.SUBCATEGORY, video.subcategory)
                     putExtra(VideoPlayerActivity.AV_FROM, video.available_from)
                     putExtra(VideoPlayerActivity.AV_UNTIL, video.available_to)
