@@ -13,10 +13,9 @@ data class VideoItem(
     val keywords: List<String>,
     val duration: Int,
     val category: String?,
+    val subcategory:String?,
     val available_from: String,
     val available_to: String,
     val is_child_friendly: Int,
     val child_friendly: Int
 )
-
-data class VideoItemList(val videoItems: List<VideoItem>)

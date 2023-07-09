@@ -172,8 +172,6 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
                 val intent = Intent(videoView.context, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, video.title)
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, video.deepLink)
-
-
                 }
                 videoView.context.startActivity(intent)
             }
@@ -189,5 +187,22 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
 }
 
 //aras
-data class VideoItemKotlin(val title: String, val thumbnailUrl: String, val deepLink: String) {
-}
+data class VideoItemKotlin(
+    val title: String,
+    val thumbnailUrl: String,
+    val deepLink: String,
+    val site_url: String,
+    val video_size: Int,
+    val created: String,
+    val institution: String,
+    val institution_logo: String?,
+    val publisher: String,
+    val keywords: List<String>,
+    val duration: Int,
+    val category: String?,
+    val subcategory: String?,
+    val available_from: String,
+    val available_to: String,
+    val is_child_friendly: Int,
+    val child_friendly: Int
+) {}
