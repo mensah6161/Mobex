@@ -9,6 +9,7 @@
         android:id="@+id/videoView2"
         android:layout_width="323dp"
         android:layout_height="257dp"
+        android:background="@drawable/video_window"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.181"
@@ -20,6 +21,9 @@
         android:id="@+id/Title"
         android:layout_width="147dp"
         android:layout_height="42dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Berat Show"
+        android:textColor="#FEFEFE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.06"
@@ -31,10 +35,29 @@
         android:id="@+id/Description"
         android:layout_width="343dp"
         android:layout_height="75dp"
+        android:background="@drawable/login_window"
+        android:paddingLeft="12sp"
+        android:paddingTop="12sp"
+        android:paddingRight="12sp"
+        android:paddingBottom="12sp"
+        android:text="ssadsasadssasdasadsa"
+        android:textColor="#FAF9F9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.638" />
+
+    <Button
+        android:id="@+id/vollbild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fullscreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 </androidx.constraintlayout.widget.ConstraintLayout>

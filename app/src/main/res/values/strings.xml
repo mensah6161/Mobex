@@ -10,4 +10,5 @@
     <string name="categories">Categories</string>
     <string name="movies">Movies</string>
     <string name="serials">Serials</string>
+    <string name="fullscreen">Fullscreen</string>
 </resources>
