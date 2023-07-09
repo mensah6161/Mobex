@@ -33,12 +33,18 @@ class VideoPlayerActivity : AppCompatActivity() {
     private lateinit var videoTitleTextView: TextView
     // private lateinit var videoThumbnailImageView: ImageView optional für später
     private lateinit var fullScreenButton: Button
+    private  lateinit var description: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.video_player)
+        var Text:String
 
+
+        Text= "# "+ CATEGORY +"#"+ SUBCATEGORY +", Duratio:"+ DURATION;
         videoTitleTextView = findViewById(R.id.Title)
+        description=findViewById(R.id.Description);
         videoTitleTextView.setText(EXTRA_VIDEO_TITLE)
         // videoThumbnailImageView = findViewById(R.id.videoThumbnailImageView)
         fullScreenButton = findViewById(R.id.vollbild)
@@ -48,7 +54,9 @@ class VideoPlayerActivity : AppCompatActivity() {
         //val videoThumbnail = intent.getIntExtra(EXTRA_VIDEO_THUMBNAIL, R.drawable.thumbfam1)
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
+
         videoTitleTextView.text = videoTitle
+      description.text= Text
         // videoThumbnailImageView.setImageResource(videoThumbnail)
 
         // Set video URI for the VideoView

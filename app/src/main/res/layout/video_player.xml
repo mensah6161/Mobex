@@ -10,31 +10,37 @@
         android:layout_width="323dp"
         android:layout_height="257dp"
         android:background="@drawable/video_window"
+        android:paddingLeft="4sp"
+        android:paddingTop="4sp"
+        android:paddingRight="4sp"
+        android:paddingBottom="4sp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.314" />
+        app:layout_constraintVertical_bias="0.308" />
 
     <TextView
         android:id="@+id/Title"
-        android:layout_width="147dp"
-        android:layout_height="42dp"
-        android:fontFamily="sans-serif-light"
+        android:layout_width="327dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="Berat Show"
         android:textColor="#FEFEFE"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/Description"
-        android:layout_width="343dp"
-        android:layout_height="75dp"
+        android:layout_width="325dp"
+        android:layout_height="68dp"
         android:background="@drawable/login_window"
         android:paddingLeft="12sp"
         android:paddingTop="12sp"
@@ -44,20 +50,19 @@
         android:textColor="#FAF9F9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.633" />
 
     <Button
         android:id="@+id/vollbild"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="413dp"
+        android:layout_height="50dp"
         android:text="@string/fullscreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

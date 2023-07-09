@@ -11,4 +11,14 @@
     <string name="movies">Movies</string>
     <string name="serials">Serials</string>
     <string name="fullscreen">Fullscreen</string>
+    <string name="Username" />
+    <string name="Password" />
+    <string name="Login" />
+    <string name="Reset_Password" />
+    <string name="Registration" />
+    <string name="Help" />
+    <string name="Name" />
+    <string name="Surename" />
+    <string name="Birthday" />
+    <string name="Email" />
 </resources>
