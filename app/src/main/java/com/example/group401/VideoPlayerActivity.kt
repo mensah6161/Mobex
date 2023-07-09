@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +25,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         const val INSTITUTION="extra_institution"
         const val INSTITUTION_LOGO="extra_institution_logo"
         const val PUBLISHER="extra_publisher"
-        const val DURATION="extra_duration"
+        const val  DURATION=45
         const val CATEGORY="extra_category"
         const val SUBCATEGORY="extra_subcategory"
         const val AV_FROM="extra_date_from"
@@ -39,7 +40,7 @@ class VideoPlayerActivity : AppCompatActivity() {
     // private lateinit var videoThumbnailImageView: ImageView optional für später
     private lateinit var fullScreenButton: Button
     private  lateinit var description: TextView
-
+    private  lateinit var Institution_Logo:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +48,10 @@ class VideoPlayerActivity : AppCompatActivity() {
         var Text:String
 
 
-        Text= "# "+ CATEGORY +"#"+ SUBCATEGORY +", Duratio:"+ DURATION
+        Text= "# "+ intent.getStringExtra(CATEGORY) +"#"+ intent.getStringExtra(SUBCATEGORY) +", Duratio:"
         videoTitleTextView = findViewById(R.id.Title)
         description=findViewById(R.id.Description)
+        Institution_Logo=findViewById(R.id.imageView)
         videoTitleTextView.setText(EXTRA_VIDEO_TITLE)
         // videoThumbnailImageView = findViewById(R.id.videoThumbnailImageView)
         fullScreenButton = findViewById(R.id.vollbild)
@@ -61,7 +63,7 @@ class VideoPlayerActivity : AppCompatActivity() {
 
         val target = object : CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
-                institutionImageView.setImageDrawable(resource)
+                Institution_Logo.setImageDrawable(resource)
             }
             override fun onLoadFailed(errorDrawable: Drawable?) {
             }
