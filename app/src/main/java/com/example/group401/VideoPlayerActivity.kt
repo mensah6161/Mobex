@@ -50,6 +50,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         fullScreenButton.setOnClickListener {
             val intent = Intent(this, FullVersionActivity::class.java)
             intent.putExtra(FullVersionActivity.EXTRA_VIDEO_DEEP_LINK, videoDeepLink)
+            intent.putExtra(FullVersionActivity.EXTRA_VIDEO_TITLE, videoTitle)
             startActivity(intent)
         }
     }

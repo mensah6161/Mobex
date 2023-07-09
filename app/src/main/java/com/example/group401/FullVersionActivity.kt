@@ -1,5 +1,6 @@
 package com.example.group401
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,8 @@ import com.example.group401.R
 class FullVersionActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_VIDEO_DEEP_LINK = "extra_video_deep_link"
+        const val EXTRA_VIDEO_TITLE = "extra_video_title"
+        const val EXTRA_VIDEO_THUMBNAIL = "extra_video_thumbnail"
     }
     //au0erhalb constructor - lateinit :aras
     private lateinit var videoView: VideoView
@@ -26,13 +29,15 @@ class FullVersionActivity : AppCompatActivity() {
         hideStatusBar()
         setWindowBackgroundBlack()
 
+
+
         videoView = findViewById(R.id.fullVideoView)
         playPauseButton = findViewById(R.id.playPauseButton)
         replayButton = findViewById(R.id.replayButton)
         closeButton = findViewById(R.id.closeButton)
 
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
-
+        val videoTitle = intent.getStringExtra(EXTRA_VIDEO_TITLE)
         // Set video URI for the VideoView aras
         val videoUri = Uri.parse(videoDeepLink)
         videoView.setVideoURI(videoUri)
@@ -50,8 +55,16 @@ class FullVersionActivity : AppCompatActivity() {
             replayVideo()
         }
         // x button zum schließen
-        closeButton.setOnClickListener {
+        closeButton.setOnClickListener {//Bugfix Berat Sahintürk
+
+                val intent = Intent(this, VideoPlayerActivity::class.java)
+            intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, videoTitle)
+            intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, videoDeepLink)
+                startActivity(intent)
+
             finish()
+
+
         }
         // replay
         videoView.setOnCompletionListener {

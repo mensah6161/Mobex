@@ -172,6 +172,8 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
                 val intent = Intent(videoView.context, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, video.title)
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, video.deepLink)
+
+
                 }
                 videoView.context.startActivity(intent)
             }
