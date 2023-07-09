@@ -197,7 +197,6 @@ data class VideoItemKotlin(
     val institution: String,
     val institution_logo: String?,
     val publisher: String,
-    val keywords: List<String>,
     val duration: Int,
     val category: String?,
     val subcategory: String?,
