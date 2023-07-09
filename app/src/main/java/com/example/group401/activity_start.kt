@@ -164,6 +164,7 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
             Glide.with(videoView)
                 .load(video.thumbnailUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
+                .centerCrop()
                 .into(target)
 
             titleTextView.text = video.title
