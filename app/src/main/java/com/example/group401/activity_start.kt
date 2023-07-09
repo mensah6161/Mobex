@@ -52,18 +52,18 @@ class activity_start : AppCompatActivity() {
                 category.createView(layoutInflater, parentLayout)
             }
         }
-        menuButton = findViewById<Button>(R.id.menuButton)
+      /* menuButton = findViewById<Button>(R.id.menuButton)
         menuButton.setOnClickListener {
             if (popupWindow.isShowing) {
                 popupWindow.dismiss()
             } else {
                 showPopupMenu()
             }
-        }
+        }*/
         // Popup Fenster
         popupWindow = PopupWindow(this)
         // Suchfeld, erscheint nur wenn man auf den S-Button klickt
-        searchField = findViewById<EditText>(R.id.searchField)
+      /*  searchField = findViewById<EditText>(R.id.searchField)
         searchField.visibility = View.GONE
         searchButton = findViewById<Button>(R.id.searchButton)
         searchButton.setOnClickListener {
@@ -72,7 +72,7 @@ class activity_start : AppCompatActivity() {
             if (searchText.isNotEmpty()) {
                 showToast("Start search") //zum Sehen, obs zur richtigen Zeit einsetzt
             }
-        }
+        }*/
     }
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         //Sobakd Nutzer außerhalb des PopupFensters klickt -> dismiss Fenster

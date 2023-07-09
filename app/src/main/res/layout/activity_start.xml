@@ -7,9 +7,10 @@
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="4dp">
 
-        <LinearLayout
+      <!--  <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -78,11 +79,11 @@
                     android:text="@string/categories"
                     android:textColor="#0027FF" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
-            <!-- Hier werden dynamisch erstellte Kategorie-Views hinzugefügt -->
+            <!-- Hier werden dynamisch erstellte Kategorie-Views hinzugefügt
 
-        </LinearLayout>
+        </LinearLayout>  -->
 
     </LinearLayout>
 
