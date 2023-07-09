@@ -1,12 +1,17 @@
 package com.example.group401
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 
 class VideoPlayerActivity : AppCompatActivity() {
 
@@ -19,7 +24,7 @@ class VideoPlayerActivity : AppCompatActivity() {
         const val INSTITUTION="extra_institution"
         const val INSTITUTION_LOGO="extra_institution_logo"
         const val PUBLISHER="extra_publisher"
-        const val  DURATION="extra_duration"
+        const val DURATION="extra_duration"
         const val CATEGORY="extra_category"
         const val SUBCATEGORY="extra_subcategory"
         const val AV_FROM="extra_date_from"
@@ -42,9 +47,9 @@ class VideoPlayerActivity : AppCompatActivity() {
         var Text:String
 
 
-        Text= "# "+ CATEGORY +"#"+ SUBCATEGORY +", Duratio:"+ DURATION;
+        Text= "# "+ CATEGORY +"#"+ SUBCATEGORY +", Duratio:"+ DURATION
         videoTitleTextView = findViewById(R.id.Title)
-        description=findViewById(R.id.Description);
+        description=findViewById(R.id.Description)
         videoTitleTextView.setText(EXTRA_VIDEO_TITLE)
         // videoThumbnailImageView = findViewById(R.id.videoThumbnailImageView)
         fullScreenButton = findViewById(R.id.vollbild)
@@ -54,9 +59,26 @@ class VideoPlayerActivity : AppCompatActivity() {
         //val videoThumbnail = intent.getIntExtra(EXTRA_VIDEO_THUMBNAIL, R.drawable.thumbfam1)
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
 
+        val target = object : CustomTarget<Drawable>() {
+            override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                institutionImageView.setImageDrawable(resource)
+            }
+            override fun onLoadFailed(errorDrawable: Drawable?) {
+            }
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+        }
+        Glide.with(videoView)
+            .load(INSTITUTION_LOGO)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .centerCrop()
+            .into(target)
+
+
+
 
         videoTitleTextView.text = videoTitle
-      description.text= Text
+        description.text= Text
         // videoThumbnailImageView.setImageResource(videoThumbnail)
 
         // Set video URI for the VideoView

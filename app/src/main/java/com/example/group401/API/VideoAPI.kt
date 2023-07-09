@@ -1,11 +1,11 @@
 package com.example.group401.API
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
-import com.google.gson.reflect.TypeToken
 
 class VideoAPI {
     private val gson = Gson()
@@ -26,7 +26,6 @@ class VideoAPI {
                 response.append(line)
             }
             reader.close()
-
             try {
                 // Convert JSON string to VideoItemList object using Gson
                 return gson.fromJson(response.toString(), object : TypeToken<List<VideoItem>>() {}.type)
