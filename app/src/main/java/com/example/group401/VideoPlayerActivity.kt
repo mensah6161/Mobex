@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
@@ -15,7 +16,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 class VideoPlayerActivity : AppCompatActivity() {
@@ -121,6 +124,12 @@ class VideoPlayerActivity : AppCompatActivity() {
         text_description="$child  #$category, #$subcategory, Duration: $duration\n available from: ${av_from?.take(10)} - ${av_until?.take(10)}"
 
 
+        GlobalScope.launch {// The Bars shouldnt be visible whole time
+            delay(10000)
+            Seekbar.visibility=View.INVISIBLE
+            Text_time.visibility=View.INVISIBLE
+
+        }
 
 
 
@@ -141,10 +150,21 @@ class VideoPlayerActivity : AppCompatActivity() {
         videoView.setOnClickListener {
             if(stop==false){
                 videoView.pause()
+
+
+
                 stop=true
             } else{
                 videoView.start()
                 stop=false
+            }
+            Seekbar.visibility=View.VISIBLE
+            Text_time.visibility=View.VISIBLE
+            GlobalScope.launch {// The Bars shouldnt be visible whole time
+                delay(10000)
+                Seekbar.visibility=View.INVISIBLE
+                Text_time.visibility=View.INVISIBLE
+
             }
 
 
@@ -168,17 +188,17 @@ class VideoPlayerActivity : AppCompatActivity() {
         // Stop vid and close everything depending on it/recources
         videoView.stopPlayback()
     }
-    private fun startVideoProgressUpdates(textTime: TextView, seekBar: SeekBar) {
+    private fun startVideoProgressUpdates(textTime: TextView, seekBar: SeekBar) { //https://stackoverflow.com/questions/46001792/writing-a-timer-using-handler-in-kotlin
         handler = Handler()
-        val threshold = 5 // Schwelle in Sekunden
+        val Abstandt = 5
 
         runnable = object : Runnable {
             override fun run() {
-                val currentPosition = videoView.currentPosition
+                val currentPosition = videoView.currentPosition //https://developer.android.com/reference/android/widget/VideoView
                 val minutes = currentPosition / 60000
                 val seconds = (currentPosition % 60000) / 1000
 
-                if (Math.abs(seekBar.progress - (currentPosition / 1000)) > threshold) {
+                if (Math.abs(seekBar.progress - (currentPosition / 1000)) > Abstandt) { //https://flexiple.com/javascript/javascript-absolute-value/
                     videoView.seekTo(seekBar.progress * 1000)
                 } else {
                     seekBar.progress = currentPosition / 1000
