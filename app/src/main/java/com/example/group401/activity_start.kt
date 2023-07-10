@@ -173,16 +173,17 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
                 val intent = Intent(videoView.context, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, video.title)
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, video.deepLink)
-                    putExtra(VideoPlayerActivity.VIDEO_SIZE, video.video_size)
+                    putExtra(VideoPlayerActivity.VIDEO_SIZE, video.video_size.toString())
                     putExtra(VideoPlayerActivity.CREATED, video.created)
                     putExtra(VideoPlayerActivity.INSTITUTION, video.institution)
-                    putExtra(VideoPlayerActivity.INSTITUTION_LOGO, video.institution_logo.toString())
+                    putExtra(VideoPlayerActivity.INSTITUTION_LOGO, video.institution_logo)
                     putExtra(VideoPlayerActivity.PUBLISHER, video.publisher)
                     putExtra(VideoPlayerActivity.CATEGORY, video.category)
+                    putExtra(VideoPlayerActivity.DURATION, video.duration.toString())
                     putExtra(VideoPlayerActivity.SUBCATEGORY, video.subcategory)
                     putExtra(VideoPlayerActivity.AV_FROM, video.available_from)
                     putExtra(VideoPlayerActivity.AV_UNTIL, video.available_to)
-                    putExtra(VideoPlayerActivity.CHILD_FRIENDLY, video.child_friendly)
+                    putExtra(VideoPlayerActivity.CHILD_FRIENDLY, video.child_friendly.toString())
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_THUMBNAIL, video.thumbnailUrl)
 
                 }

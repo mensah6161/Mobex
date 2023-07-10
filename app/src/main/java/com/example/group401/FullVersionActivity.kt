@@ -38,7 +38,6 @@ class FullVersionActivity : AppCompatActivity() {
 
         val videoDeepLink = intent.getStringExtra(EXTRA_VIDEO_DEEP_LINK)
         val videoTitle = intent.getStringExtra(EXTRA_VIDEO_TITLE)
-        // Set video URI for the VideoView aras
         val videoUri = Uri.parse(videoDeepLink)
         videoView.setVideoURI(videoUri)
 
@@ -53,6 +52,8 @@ class FullVersionActivity : AppCompatActivity() {
         // Click für replay button
         replayButton.setOnClickListener {
             replayVideo()
+
+
         }
         // x button zum schließen
         closeButton.setOnClickListener {//Bugfix Berat Sahintürk

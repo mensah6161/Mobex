@@ -9,15 +9,16 @@
         android:id="@+id/videoView2"
         android:layout_width="323dp"
         android:layout_height="257dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/video_window"
         android:paddingLeft="4sp"
         android:paddingTop="4sp"
         android:paddingRight="4sp"
-        android:paddingBottom="4sp"
 
+        android:paddingBottom="4sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.308" />
@@ -35,12 +36,12 @@
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <TextView
         android:id="@+id/Description"
-        android:layout_width="325dp"
-        android:layout_height="68dp"
+        android:layout_width="327dp"
+        android:layout_height="90dp"
         android:background="@drawable/login_window"
         android:paddingLeft="12sp"
         android:paddingTop="12sp"
@@ -49,10 +50,10 @@
         android:textColor="#FAF9F9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.751" />
+        app:layout_constraintVertical_bias="0.778" />
 
     <Button
         android:id="@+id/vollbild"
@@ -69,25 +70,48 @@
         android:id="@+id/imageView"
         android:layout_width="72sp"
         android:layout_height="72sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.799"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.631"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/Description"
+        app:layout_constraintEnd_toEndOf="@+id/Description"
+        app:layout_constraintTop_toBottomOf="@+id/videoView2"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/Publisher"
-        android:layout_width="214dp"
-        android:layout_height="41dp"
+        android:layout_width="205dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="36dp"
         android:fontFamily="@font/alfa_slab_one"
         android:text=""
+        android:textAlignment="viewEnd"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintBottom_toTopOf="@+id/Description"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/videoView2" />
+
+    <SeekBar
+        android:id="@+id/Time"
+        android:layout_width="280dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/videoView2"
+        app:layout_constraintEnd_toEndOf="@+id/videoView2"
+        app:layout_constraintStart_toStartOf="@+id/videoView2" />
+
+    <TextView
+        android:id="@+id/Text_time"
+        android:layout_width="45dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="5dp"
+        android:text="20:10"
+        android:textColor="#F6F3F3"
+        app:layout_constraintBottom_toTopOf="@+id/videoView2"
+        app:layout_constraintStart_toEndOf="@+id/Time" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
