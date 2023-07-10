@@ -168,21 +168,28 @@ class VideoPlayerActivity : AppCompatActivity() {
         // Stop vid and close everything depending on it/recources
         videoView.stopPlayback()
     }
-    private fun startVideoProgressUpdates( Text_time:TextView, Seekbar:SeekBar) {
-
+    private fun startVideoProgressUpdates(textTime: TextView, seekBar: SeekBar) {
         handler = Handler()
-
+        val threshold = 5 // Schwelle in Sekunden
 
         runnable = object : Runnable {
             override fun run() {
                 val currentPosition = videoView.currentPosition
-                val Min=currentPosition/60000
-                val Sec=(currentPosition%60000)/1000
+                val minutes = currentPosition / 60000
+                val seconds = (currentPosition % 60000) / 1000
+
+                if (Math.abs(seekBar.progress - (currentPosition / 1000)) > threshold) {
+                    videoView.seekTo(seekBar.progress * 1000)
+                } else {
+                    seekBar.progress = currentPosition / 1000
+                    textTime.text = String.format("%02d:%02d", minutes, seconds)
+                }
+
                 handler.postDelayed(this, 1000) // Aktualisierung alle 1 Sekunde
-                Seekbar.progress=currentPosition/1000
-                Text_time.text=Min.toString()+":"+Sec%60000
             }
         }
         handler.postDelayed(runnable, 0) // Erste Aktualisierung sofort starten
     }
+
+
 }
