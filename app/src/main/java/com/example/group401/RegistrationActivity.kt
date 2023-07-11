@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 class RegistrationActivity: AppCompatActivity()  {
     private  lateinit var Reg_next:Button
@@ -28,16 +29,18 @@ class RegistrationActivity: AppCompatActivity()  {
     private lateinit var Show:Button
     private lateinit var Layout1: LinearLayout
     private lateinit var Layout2:LinearLayout
+    private lateinit var Firebase:FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registration  )
-        var password_API:String
-        var  Username_API:String
-        var  Email_API:String
+        var password_API:String ="@"
+        var  Username_API:String="@"
+        var  Email_API:String="@"
         var Name_API:String
         var Surename_API:String
         var good_password= Regex("^(?=.*[0-9])(?=.*[!@#\$%^&*])(?=\\S+\$).{8,}\$") //https://stackoverflow.com/questions/23214434/regular-expression-in-android-for-password-field
+        var right_email=Regex("^[\\w.%+-]+@(gmail\\.com|gmail\\.de)$")
         var Genre1: Boolean=false
         var Genre2:Boolean=false
         var Genre3:Boolean=false
@@ -60,16 +63,28 @@ class RegistrationActivity: AppCompatActivity()  {
         Show=findViewById(R.id.show)
         Layout1=findViewById(R.id.Form)
         Layout2=findViewById(R.id.Genres)
+        Firebase=FirebaseAuth.getInstance() //https://www.youtube.com/watch?v=idbxxkF1l6k
 
 
 
 
         Reg_next.setOnClickListener {
+            password_API =password1.text.toString()    //normally this should have been send to the Database
+            Username_API=username.text.toString()
+            Email_API=email.text.toString()
+            Name_API=Name.text.toString()
+            Surename_API=Surename.text.toString()
+
+
+
             if(password1.text.toString()!=password2.text.toString()){
                 Toast.makeText(this, "You passwords are different", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
 
-            }else if(false==good_password.matches(password1.text.toString())){
+            }else if (!right_email.matches(Email_API)) {
+                Toast.makeText(this, "Your email has to end with @gmail.com or @gmail.de", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            } else if(false==good_password.matches(password1.text.toString())){
                 Toast.makeText(this, "Please choose a password, which at least has 8 Digit," +
                         "one special character, and at least 1 number", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -85,11 +100,8 @@ class RegistrationActivity: AppCompatActivity()  {
 
 
             }
-            password_API =password1.text.toString()    //normally this should have been send to the Database
-            Username_API=username.text.toString()
-            Email_API=email.text.toString()
-            Name_API=Name.text.toString()
-            Surename_API=Surename.text.toString()
+
+
 
             Layout1.visibility= View.INVISIBLE
             Layout2.visibility=View.VISIBLE
@@ -98,10 +110,20 @@ class RegistrationActivity: AppCompatActivity()  {
 
         }
         Reg_now.setOnClickListener {
+            Firebase.createUserWithEmailAndPassword(Email_API,password_API).addOnCompleteListener{
+                if (it.isSuccessful){
+                    Toast.makeText(this, "You have succesfully registered", Toast.LENGTH_SHORT).show()
+                    val intent= Intent(this, activity_start::class.java )
+                    startActivity(intent)
+
+                } else{
+                    Toast.makeText(this, "You registration was unsucessfull, are you already in the team", Toast.LENGTH_SHORT).show()
+                    return@addOnCompleteListener
+                }
+
+            }
 
 
-                val intent= Intent(this, activity_start::class.java )
-                startActivity(intent)
 
 
 

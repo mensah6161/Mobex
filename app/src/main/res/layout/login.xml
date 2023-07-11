@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
             android:ems="10"
-            android:hint="@string/Username"
+            android:hint="@string/Email"
             android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
