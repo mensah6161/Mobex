@@ -6,15 +6,31 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="273dp"
-        android:layout_height="557dp"
+        android:id="@+id/Form"
+        android:layout_width="280dp"
+        android:layout_height="577dp"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.215">
+
+        <EditText
+            android:id="@+id/Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textfield"
+            android:ems="10"
+            android:hint="@string/Username"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:textColor="#000000"
+            android:textColorHint="#6E6E6E"
+            android:textColorLink="#000000" />
 
         <TextView
             android:id="@+id/textView10"
@@ -27,17 +43,17 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/Email"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
             android:ems="10"
-            android:hint="@string/Name"
+            android:hint="@string/Email"
             android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
             android:textColor="#000000"
-            android:textColorHint="#515151"
+            android:textColorHint="#6E6E6E"
             android:textColorLink="#000000" />
 
         <TextView
@@ -51,7 +67,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/Surename"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
@@ -75,12 +91,12 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editTextText3"
+            android:id="@+id/Last_name"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
             android:ems="10"
-            android:hint="@string/Birthday"
+            android:hint="@string/Name"
             android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
@@ -99,18 +115,19 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/editTextText4"
+            android:id="@+id/Reg_password1"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
             android:ems="10"
-            android:hint="@string/Email"
+            android:hint="@string/Password"
             android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
             android:textColor="#000000"
             android:textColorHint="#515151"
             android:textColorLink="#000000" />
+
 
         <TextView
             android:id="@+id/textView5"
@@ -122,5 +139,176 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <EditText
+            android:id="@+id/Reg_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textfield"
+            android:ems="10"
+            android:hint="@string/repeat_password"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:paddingStart="5dp"
+            android:textColor="#000000"
+            android:textColorHint="#515151"
+            android:textColorLink="#000000" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/Registration_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/next" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Genres"
+        android:layout_width="408dp"
+        android:layout_height="730dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="327dp"
+            android:layout_height="37dp"
+            android:fontFamily="@font/alfa_slab_one"
+            android:text="@string/please_choose_you_interests"
+            android:textColor="#FEFEFE"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.09" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/serie"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+
+            android:text="@string/serie" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/nachrichten"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nachrichten_information" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/dokumentation"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dokumentation_reportage" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/film"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:text="@string/film" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/show"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:text="@string/show_magazine" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/Register"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:text="@string/watch_now" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
