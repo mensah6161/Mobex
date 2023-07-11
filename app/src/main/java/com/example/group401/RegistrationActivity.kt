@@ -80,7 +80,7 @@ class RegistrationActivity: AppCompatActivity()  {
             else if( password1.text.toString()==""||password2.text.toString()==""||
                 email.text.toString()==""||username.text.toString()==""||Name.text.toString()==""||
                     Surename.text.toString()==""){
-                Toast.makeText(this, "You passwords are different", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill out all the given fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
 
 

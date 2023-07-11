@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/login_username"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/password_input"
+            android:id="@+id/login_password"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
