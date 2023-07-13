@@ -31,6 +31,7 @@ class RegistrationActivity: AppCompatActivity()  {
     private lateinit var Layout2:LinearLayout
     private lateinit var Firebase:FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registration  )

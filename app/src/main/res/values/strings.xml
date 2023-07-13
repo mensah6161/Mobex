@@ -31,4 +31,7 @@
     <string name="dokumentation_reportage">DOKUMENTATION/REPORTAGE</string>
     <string name="film">FILM</string>
     <string name="show_magazine">SHOW/MAGAZINE</string>
+    <string name="put_in_you_email">Put in you Email!</string>
+    <string name="send_new_password">Send new Password!</string>
+    <string name="go_to_menu">Go to Menu</string>
 </resources>

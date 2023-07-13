@@ -6,25 +6,25 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="508dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="391dp"
+        android:layout_height="306dp"
         android:background="@drawable/login_window"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.415">
 
         <EditText
-            android:id="@+id/login_username"
+            android:id="@+id/send_password"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
             android:background="@drawable/textfield"
             android:ems="10"
-            android:hint="@string/Email"
+            android:hint="@string/put_in_you_email"
             android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="5dp"
@@ -33,45 +33,35 @@
             android:textColorLink="#000000" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView33"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="276dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/textfield"
-            android:ems="10"
-            android:hint="@string/Password"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingStart="5dp"
-            android:textColor="#000000"
-            android:textColorHint="#515151"
-            android:textColorLink="#000000" />
-
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView34"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/Login_System"
-            android:layout_width="249dp"
+            android:id="@+id/Reset_password2"
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:text="@string/Login" />
+            android:text="@string/send_new_password" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/Reset"
-            android:layout_width="278dp"
+            android:id="@+id/textView35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/go_menu"
+            android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:text="@string/Reset_Password"
-            android:textColor="#FEFEFE" />
+            android:text="@string/go_to_menu" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
