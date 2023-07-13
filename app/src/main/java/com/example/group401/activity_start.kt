@@ -52,7 +52,7 @@ class activity_start : AppCompatActivity() {
                 category.createView(layoutInflater, parentLayout)
             }
         }
-      /* menuButton = findViewById<Button>(R.id.menuButton)
+      /* menuButton = findViewById<Button>(R.id.menuButton) // Berat Sahintürk, was not usefull
         menuButton.setOnClickListener {
             if (popupWindow.isShowing) {
                 popupWindow.dismiss()
@@ -169,7 +169,7 @@ class Category(val name: String, val videoList: List<VideoItemKotlin>) {
 
             titleTextView.text = video.title
 
-            videoView.setOnClickListener {
+            videoView.setOnClickListener { // new Intents for Videoplayer
                 val intent = Intent(videoView.context, VideoPlayerActivity::class.java).apply {
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, video.title)
                     putExtra(VideoPlayerActivity.EXTRA_VIDEO_DEEP_LINK, video.deepLink)

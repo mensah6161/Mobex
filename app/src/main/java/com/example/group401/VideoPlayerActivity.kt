@@ -21,7 +21,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
-class VideoPlayerActivity : AppCompatActivity() {
+class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-- made by Berat Sahintürk-->
 
     companion object {
         const val EXTRA_VIDEO_TITLE = "extra_video_title"

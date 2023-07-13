@@ -12,7 +12,7 @@ private lateinit var Reset:Button
     private lateinit var Email:Button
     private lateinit var Firebase:FirebaseAuth
 
-class ResetPasswordActivity: AppCompatActivity() {
+class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat Sahintürk-->
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.reset)

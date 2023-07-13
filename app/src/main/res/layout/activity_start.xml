@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:padding="4dp">
 
-      <!--  <LinearLayout
+      <!--  <LinearLayout                             Berat Commented that out, to fix bug
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

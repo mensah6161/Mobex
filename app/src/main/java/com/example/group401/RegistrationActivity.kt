@@ -12,8 +12,10 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class RegistrationActivity: AppCompatActivity()  {
+class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahintürk-->
     private  lateinit var Reg_next:Button
     private lateinit var password1:EditText
     private lateinit var password2:EditText
@@ -30,6 +32,8 @@ class RegistrationActivity: AppCompatActivity()  {
     private lateinit var Layout1: LinearLayout
     private lateinit var Layout2:LinearLayout
     private lateinit var Firebase:FirebaseAuth
+    private lateinit var Database:FirebaseDatabase
+    private lateinit var databaseref: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +69,8 @@ class RegistrationActivity: AppCompatActivity()  {
         Layout1=findViewById(R.id.Form)
         Layout2=findViewById(R.id.Genres)
         Firebase=FirebaseAuth.getInstance() //https://www.youtube.com/watch?v=idbxxkF1l6k
+        Database= FirebaseDatabase.getInstance()
+        databaseref= Database.reference
 
 
 
@@ -113,6 +119,11 @@ class RegistrationActivity: AppCompatActivity()  {
         Reg_now.setOnClickListener {
             Firebase.createUserWithEmailAndPassword(Email_API,password_API).addOnCompleteListener{
                 if (it.isSuccessful){
+                    val user= Firebase.currentUser
+                    val userid=user?.uid.toString()
+                    val UserRef = FirebaseDatabase.getInstance().reference.child("users").child(userid)
+
+
                     Toast.makeText(this, "You have succesfully registered", Toast.LENGTH_SHORT).show()
                     val intent= Intent(this, activity_start::class.java )
                     startActivity(intent)

@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginActivity: AppCompatActivity()  {
+class LoginActivity: AppCompatActivity()  { // <!-- made by Berat Sahintürk-->
         private lateinit var Login:Button
         private lateinit var username:EditText
         private lateinit var password:EditText
