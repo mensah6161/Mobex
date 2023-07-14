@@ -53,6 +53,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
     private lateinit var  Text_time:TextView
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
+    private lateinit var share: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +78,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         Publisher_Text=findViewById(R.id.Publisher)
         Seekbar=findViewById(R.id.Time)
         Text_time=findViewById(R.id.Text_time)
+        share=findViewById(R.id.Share)
 
 
 
@@ -121,7 +123,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
             .centerCrop()
             .into(target)
 
-        text_description="$child  #$category, #$subcategory, Duration: $duration\n available from: ${av_from?.take(10)} - ${av_until?.take(10)}"
+        text_description="#$category, #$subcategory, Duration: $duration seconds \n available from: ${av_from?.take(10)} - ${av_until?.take(10)}"
 
 
         GlobalScope.launch {// The Bars shouldnt be visible whole time
@@ -131,11 +133,21 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
 
         }
 
+        share.setOnClickListener{
+            val intent= Intent(Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            intent.putExtra(Intent.EXTRA_SUBJECT, " Here is a cool Video you should watch")
+            intent.putExtra(Intent.EXTRA_TEXT,videoDeepLink)
+            startActivity(Intent.createChooser(intent, "Lets share!"))
+
+
+        }
+
 
 
         videoTitleTextView.text = title
         description.text= text_description
-        Publisher_Text.text= Institution+" :"
+        Publisher_Text.text= Institution+" "
         Seekbar.max=duration
 
         // Set video URI for the VideoView

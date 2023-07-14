@@ -56,7 +56,7 @@ class FullVersionActivity : AppCompatActivity() {
 
         }
         // x button zum schließen
-        closeButton.setOnClickListener {//Bugfix Berat Sahintürk we need the intents to get the same Video Players
+        /*    closeButton.setOnClickListener {//Bugfix Berat Sahintürk we need the intents to get the same Video Players
 
                 val intent = Intent(this, VideoPlayerActivity::class.java)
             intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_TITLE, videoTitle)
@@ -66,7 +66,7 @@ class FullVersionActivity : AppCompatActivity() {
             finish()
 
 
-        }
+        }*/
         // replay
         videoView.setOnCompletionListener {
             showReplayButton()
