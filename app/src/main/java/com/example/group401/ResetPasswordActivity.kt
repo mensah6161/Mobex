@@ -31,9 +31,9 @@ class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat SahintÃ
 
           Firebase.sendPasswordResetEmail(input).addOnCompleteListener{
                 if (it.isSuccessful){
-                    Toast.makeText(this, "The Reset was Successfull, go to you Account", Toast.LENGTH_SHORT).show()
-                   /* val intent= Intent (this, FirstMainActivity::class.java)
-                    startActivity(intent)*/
+                    Toast.makeText(this, "The Reset was Successfull, go to you Email Acc", Toast.LENGTH_SHORT).show()
+                    val intent= Intent (this, FirstMainActivity::class.java)
+                    startActivity(intent)
 
 
                 }
@@ -47,7 +47,8 @@ class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat SahintÃ
             }
         }
        Back.setOnClickListener {
-
+           val intent= Intent (this, FirstMainActivity::class.java)
+           startActivity(intent)
 
         }
 
