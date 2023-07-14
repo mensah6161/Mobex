@@ -48,8 +48,12 @@
             android:label="Video Player">
         </activity>
 
-        <!-- FullVersionActivity -->
+            <activity android:name=".ResetPasswordActivity"
+                android:label="Reset Passoword">
+
+            </activity>
         <activity
+
             android:name=".FullVersionActivity"
             android:screenOrientation="landscape" />
         <meta-data
