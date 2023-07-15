@@ -1,16 +1,25 @@
 package com.example.group401
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.PopupWindow
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.VideoView
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -18,8 +27,11 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
+
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
+import java.time.LocalDateTime
+
 
 class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-- made by Berat Sahintürk-->
 
@@ -54,7 +66,10 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
     private lateinit var share: ImageView
+    private lateinit var report:ImageView
+    private lateinit var Popupper:PopupWindow
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.video_player)
@@ -79,6 +94,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         Seekbar=findViewById(R.id.Time)
         Text_time=findViewById(R.id.Text_time)
         share=findViewById(R.id.Share)
+        report=findViewById(R.id.Report)
 
 
 
@@ -100,7 +116,43 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         val av_until=intent.getStringExtra( AV_UNTIL)
         val child= intent.getStringExtra( CHILD_FRIENDLY)
 
+        report.setOnClickListener {
+            val popupView = LayoutInflater.from(this).inflate(R.layout.popup, null)
+            Popupper = PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                true
+            )
+            Popupper.showAtLocation(popupView, Gravity.CENTER, 0, 0)
+            val reportEditText = popupView.findViewById<EditText>(R.id.Report_text)
+            val sendButton = popupView.findViewById<Button>(R.id.Send)
+            val cancelButton = popupView.findViewById<Button>(R.id.Cancel)
+            sendButton.setOnClickListener {
+                val text = reportEditText.text.toString()
 
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "plain/text"
+                intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("BeratSahintuerk61@gmail.com"))
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Report App MOBEX ${LocalDateTime.now()}")
+                intent.putExtra(Intent.EXTRA_TEXT, text)
+
+
+
+                Popupper.dismiss()
+            }
+
+            cancelButton.setOnClickListener {
+                Popupper.dismiss()
+            }
+
+
+        }
+        fun onDestroy() {
+            super.onDestroy()
+            // Popup-Fenster freigeben
+            Popupper.dismiss()
+        }
 
 
         val target = object : CustomTarget<Drawable>() {
@@ -116,6 +168,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
                 println("Successfully started loading the Image for the logo")
             }
         }
+
         startVideoProgressUpdates(Text_time,Seekbar)
         Glide.with(videoView)
             .load(videoLogoUrl)
@@ -125,12 +178,10 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
 
         text_description="#$category, #$subcategory, Duration: $duration seconds \n available from: ${av_from?.take(10)} - ${av_until?.take(10)}"
 
-
         GlobalScope.launch {// The Bars shouldnt be visible whole time
             delay(10000)
             Seekbar.visibility=View.INVISIBLE
             Text_time.visibility=View.INVISIBLE
-
         }
 
         share.setOnClickListener{
@@ -139,12 +190,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
             intent.putExtra(Intent.EXTRA_SUBJECT, " Here is a cool Video you should watch")
             intent.putExtra(Intent.EXTRA_TEXT,videoDeepLink)
             startActivity(Intent.createChooser(intent, "Lets share!"))
-
-
         }
-
-
-
         videoTitleTextView.text = title
         description.text= text_description
         Publisher_Text.text= Institution+" "
@@ -153,18 +199,9 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         // Set video URI for the VideoView
         val videoUri = Uri.parse(videoDeepLink)
         videoView.setVideoURI(videoUri)
-
-
-
-
-
-
         videoView.setOnClickListener {
             if(stop==false){
                 videoView.pause()
-
-
-
                 stop=true
             } else{
                 videoView.start()
@@ -176,12 +213,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
                 delay(10000)
                 Seekbar.visibility=View.INVISIBLE
                 Text_time.visibility=View.INVISIBLE
-
             }
-
-
-
-
         }
         // Starting video
         videoView.start()
@@ -194,7 +226,6 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
             startActivity(intent)
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         // Stop vid and close everything depending on it/recources
@@ -222,6 +253,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         }
         handler.postDelayed(runnable, 0) // Erste Aktualisierung sofort starten
     }
+
 
 
 }

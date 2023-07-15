@@ -14,6 +14,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahintürk-->
     private  lateinit var Reg_next:Button
@@ -32,8 +35,10 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
     private lateinit var Layout1: LinearLayout
     private lateinit var Layout2:LinearLayout
     private lateinit var Firebase:FirebaseAuth
-    private lateinit var Database:FirebaseDatabase
+    private lateinit var FireDatabase:FirebaseDatabase
     private lateinit var databaseref: DatabaseReference
+    private lateinit var FireFirebase: FirebaseFirestore
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +47,8 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
         var password_API:String ="@"
         var  Username_API:String="@"
         var  Email_API:String="@"
-        var Name_API:String
-        var Surename_API:String
+        var Name_API:String="@"
+        var Surename_API:String="@"
         var good_password= Regex("^(?=.*[0-9])(?=.*[!@#\$%^&*])(?=\\S+\$).{8,}\$") //https://stackoverflow.com/questions/23214434/regular-expression-in-android-for-password-field
         var right_email=Regex("^[\\w.%+-]+@(gmail\\.com|gmail\\.de)$")
         var Genre1: Boolean=false
@@ -51,6 +56,7 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
         var Genre3:Boolean=false
         var Genre4:Boolean=false
         var Genre5:Boolean=false
+
 
 
         Reg_next=findViewById(R.id.Registration_next)
@@ -69,8 +75,9 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
         Layout1=findViewById(R.id.Form)
         Layout2=findViewById(R.id.Genres)
         Firebase=FirebaseAuth.getInstance() //https://www.youtube.com/watch?v=idbxxkF1l6k
-        Database= FirebaseDatabase.getInstance()
-        databaseref= Database.reference
+        FireDatabase= FirebaseDatabase.getInstance()
+        databaseref= FireDatabase.getReference()
+        FireFirebase= FirebaseFirestore.getInstance()
 
 
 
@@ -81,6 +88,8 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
             Email_API=email.text.toString()
             Name_API=Name.text.toString()
             Surename_API=Surename.text.toString()
+            databaseref.child("User").child(Name_API).setValue(Username_API)
+
 
 
 
@@ -108,38 +117,40 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
 
             }
 
-
-
             Layout1.visibility= View.INVISIBLE
             Layout2.visibility=View.VISIBLE
-
-
-
         }
+
         Reg_now.setOnClickListener {
-            Firebase.createUserWithEmailAndPassword(Email_API,password_API).addOnCompleteListener{
-                if (it.isSuccessful){
-                    val user= Firebase.currentUser
-                    val userid=user?.uid.toString()
-                    val UserRef = FirebaseDatabase.getInstance().reference.child("users").child(userid)
-
-
-                    Toast.makeText(this, "You have succesfully registered", Toast.LENGTH_SHORT).show()
-                    val intent= Intent(this, activity_start::class.java )
+            Firebase.createUserWithEmailAndPassword(Email_API, password_API).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val user = Firebase.currentUser
+                    val userId = user?.uid
+                        val intent= Intent(this, activity_start::class.java)
                     startActivity(intent)
+                    Toast.makeText(this, "Your registration was successful, welcome to the crew", Toast.LENGTH_SHORT).show()
+                    finish()
+               /*     if (userId != null) {
+                        val userRef = FireFirebase.collection("users").document(userId)
+                        val userData = hashMapOf(
+                            "username" to Username_API,
+                            "email" to Email_API,
+                            "name" to Name_API,
+                            "surname" to Surename_API
+                       */
 
-                } else{
-                    Toast.makeText(this, "You registration was unsucessfull, are you already in the team", Toast.LENGTH_SHORT).show()
-                    return@addOnCompleteListener
+
+
+                } else {
+
+                    Toast.makeText(this, "Your registration was unsuccessful", Toast.LENGTH_SHORT).show()
                 }
-
             }
-
-
-
-
-
         }
+
+        // Restlicher Code für Genre-Buttons bleibt unverändert
+
+
         Serie.setOnClickListener {
             if (Genre1==false){
                 Genre1=true
@@ -148,33 +159,27 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
             }else {
                 Genre1=false
                 Serie.setBackgroundColor(Color.BLACK)
-
             }
-
         }
+
         Nachrichten.setOnClickListener {
             if (Genre2==false){
                 Genre2=true
                 Nachrichten.setBackgroundColor(Color.DKGRAY)
-
             }else {
                 Genre2=false
                 Nachrichten.setBackgroundColor(Color.BLACK)
-
             }
-
         }
+
         Doku.setOnClickListener {
             if (Genre3==false){
                 Genre3=true
                 Doku.setBackgroundColor(Color.DKGRAY)
-
             }else {
                 Genre3=false
                 Doku.setBackgroundColor(Color.BLACK)
-
             }
-
         }
         Film.setOnClickListener {
             if (Genre4==false){
@@ -184,9 +189,7 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
             }else {
                 Genre4=false
                 Film.setBackgroundColor(Color.BLACK)
-
             }
-
         }
         Show.setOnClickListener {
             if (Genre5==false){
@@ -198,17 +201,7 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
                 Show.setBackgroundColor(Color.BLACK)
 
             }
-
         }
-
-
-
-
-
-
-
-
-
     }
 
 }
