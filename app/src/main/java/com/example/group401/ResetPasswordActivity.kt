@@ -23,7 +23,7 @@ class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat SahintÃ
        Reset=findViewById(R.id.Reset_password2)
         Back=findViewById(R.id.go_menu)
        Email=findViewById(R.id.send_password)
-      Firebase= FirebaseAuth.getInstance()
+        Firebase= FirebaseAuth.getInstance()
 
 
         Reset.setOnClickListener {

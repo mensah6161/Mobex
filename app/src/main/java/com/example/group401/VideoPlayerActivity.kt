@@ -137,8 +137,6 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Report App MOBEX ${LocalDateTime.now()}")
                 intent.putExtra(Intent.EXTRA_TEXT, text)
 
-
-
                 Popupper.dismiss()
             }
 
@@ -248,10 +246,10 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
                     textTime.text = String.format("%02d:%02d", minutes, seconds)
                 }
 
-                handler.postDelayed(this, 1000) // Aktualisierung alle 1 Sekunde
+                handler.postDelayed(this, 1000)
             }
         }
-        handler.postDelayed(runnable, 0) // Erste Aktualisierung sofort starten
+        handler.postDelayed(runnable, 0)
     }
 
 

@@ -90,9 +90,6 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
             Surename_API=Surename.text.toString()
             databaseref.child("User").child(Name_API).setValue(Username_API)
 
-
-
-
             if(password1.text.toString()!=password2.text.toString()){
                 Toast.makeText(this, "You passwords are different", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -104,8 +101,6 @@ class RegistrationActivity: AppCompatActivity()  {   // <!-- made by Berat Sahin
                 Toast.makeText(this, "Please choose a password, which at least has 8 Digit," +
                         "one special character, and at least 1 number", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-
-
 
             }
             else if( password1.text.toString()==""||password2.text.toString()==""||
