@@ -33,7 +33,7 @@ import org.w3c.dom.Text
 import java.time.LocalDateTime
 
 
-class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-- made by Berat Sahintürk-->
+class VideoPlayerActivity : AppCompatActivity() {// except from fullversion <!-- made by Berat Sahintürk-->
 
     companion object {
         const val EXTRA_VIDEO_TITLE = "extra_video_title"
@@ -167,7 +167,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
             }
         }
 
-        startVideoProgressUpdates(Text_time,Seekbar)
+        startVideoProgressUpdates(Text_time,Seekbar) //made by Berat
         Glide.with(videoView)
             .load(videoLogoUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
@@ -182,7 +182,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
             Text_time.visibility=View.INVISIBLE
         }
 
-        share.setOnClickListener{
+        share.setOnClickListener{ //berat
             val intent= Intent(Intent.ACTION_SEND)
             intent.setType("text/plain")
             intent.putExtra(Intent.EXTRA_SUBJECT, " Here is a cool Video you should watch")
@@ -217,7 +217,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         videoView.start()
 
         // Full screen Option
-        fullScreenButton.setOnClickListener {
+        fullScreenButton.setOnClickListener { //made by menekse
             val intent = Intent(this, FullVersionActivity::class.java)
             intent.putExtra(FullVersionActivity.EXTRA_VIDEO_DEEP_LINK, videoDeepLink)
             intent.putExtra(FullVersionActivity.EXTRA_VIDEO_TITLE, title)
@@ -229,7 +229,7 @@ class VideoPlayerActivity : AppCompatActivity() {// Fast alle neu gemacht von<!-
         // Stop vid and close everything depending on it/recources
         videoView.stopPlayback()
     }
-    private fun startVideoProgressUpdates(textTime: TextView, seekBar: SeekBar) { //https://stackoverflow.com/questions/46001792/writing-a-timer-using-handler-in-kotlin
+    private fun startVideoProgressUpdates(textTime: TextView, seekBar: SeekBar) { //https://stackoverflow.com/questions/46001792/writing-a-timer-using-handler-in-kotlin //made by Berat
         handler = Handler()
         val Abstandt = 5
 

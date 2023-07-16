@@ -8,11 +8,13 @@
     <!-- made by Berat Sahintürk-->
 
     <LinearLayout
+        android:id="@+id/linearLayoutstart"
         android:layout_width="307dp"
         android:layout_height="208dp"
+        android:background="@drawable/login_window"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="@drawable/login_window"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,5 +37,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Help" />
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/Ard"
+        android:layout_width="324dp"
+        android:layout_height="575dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ard_screen" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
