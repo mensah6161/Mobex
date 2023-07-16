@@ -35,6 +35,7 @@ class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat SahintÃ
                     val intent= Intent (this, FirstMainActivity::class.java)
                     intent.putExtra("EXTRA_STATE",true)
                     startActivity(intent)
+                    finish()
 
 
                 }
@@ -51,7 +52,7 @@ class ResetPasswordActivity: AppCompatActivity() { // <!-- made by Berat SahintÃ
            val intent= Intent (this, FirstMainActivity::class.java)
            intent.putExtra("EXTRA_STATE",true)
            startActivity(intent)
-
+            finish()
         }
 
 
