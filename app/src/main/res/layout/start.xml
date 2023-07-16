@@ -39,8 +39,9 @@
             android:text="@string/Help" />
 
     </LinearLayout>
-
+    <!--https://www.ard-media.de/unternehmen/presse/presseservicedownloads-logo-->
     <ImageView
+
         android:id="@+id/Ard"
         android:layout_width="324dp"
         android:layout_height="575dp"

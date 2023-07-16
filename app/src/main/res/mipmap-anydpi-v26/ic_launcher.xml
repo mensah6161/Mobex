@@ -2,4 +2,6 @@
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/ic_launcher_background"/>
     <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+
+    <!-- https://iconduck.com/icons/272154/ard-mediathek Link to pic-->
 </adaptive-icon>
